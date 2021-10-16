@@ -21,7 +21,7 @@ class CreateDeviceFromUsers extends Migration
             $table->string('mac_address');
             $table->string('ip_Address');
             $table->datetime('tgl_register');
-            $table->string('umur_registrasi');
+            $table->string('umur_registrasi')->nullable();
         });
     }
 

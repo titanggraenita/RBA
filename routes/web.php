@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Device;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,13 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $MAC = exec("/sbin/ip addr|/bin/grep link/ether | /bin/awk '{print $2}'");
+    return view('dashboard', [
+        "MAC" => $MAC
+    ]);
 })->middleware(['auth'])->name('dashboard');
+
+Route::post("/device/store", [Device::class, 'store']);
+Route::get("/dashboard/pending", [Device::class, 'afterRegist']);
 
 require __DIR__.'/auth.php';

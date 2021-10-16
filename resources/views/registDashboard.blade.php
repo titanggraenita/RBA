@@ -91,34 +91,6 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
-                                            <tr class="whitespace-nowrap">
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    1
-                                                </td>
-                                                <td class="px-6 py-4">
-                                                    <div class="text-sm text-gray-900">
-                                                        Jon doe
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4">
-                                                    <div class="text-sm text-gray-500">jhondoe@example.com</div>
-                                                </td>
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
-                                                </td>
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
-                                                </td>
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
-                                                </td>
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
-                                                </td>
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
