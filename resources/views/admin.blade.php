@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Admin') }}
         </h2>
     </x-slot>
 
@@ -9,55 +9,34 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <img src="{{asset('img/Logo_PENS.png')}}" class="object-scale-down mx-auto w-24 h-24">
-                    <center>
-                        <h1 class="mx-auto font-bold font-mono text-lg">EEPIS MOBILE ACCESS</h1>
-                        <p>Welcome {{Auth::user()->email}}</p>
-                        <p>Please Register Your Device and Let's BYOD</p>
-                        <p>Your IP Address: {{$_SERVER['REMOTE_ADDR']}}</p>
+                    <h1 class="mx-auto font-bold font-mono text-lg mb-2">REQUEST NEW DEVICE</h1>
                         <form class="w-full max-w-sm" method="POST" action="/device/store">
                             @csrf
                             <div class="md:flex md:items-center mb-2">
                                 <div class="md:w-1/3">
-                                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
-                                        MAC Address
+                                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-6" for="inline-full-name">
+                                        Net ID
                                     </label>
                                 </div>
                                 <div class="md:w-2/3">
-                                    <input name="mac" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" value="{{$MAC}}" disabled>
-                                </div>
-                            </div>
-                            <div class="md:flex md:items-center mb-2">
-                                <div class="md:w-1/3">
-                                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-password">
-                                        Device
-                                    </label>
-                                </div>
-                                <div class="md:w-2/3">
-                                    <select name="device" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password">
-                                        <option>Choose Your Device</option>
-                                        <option value="Smartphone">Smartphone / Tablet</option>
-                                        <option value="Laptop">Notebook / Laptop</option>
-                                        <option value="Desktop">Desktop PC</option>
-                                    </select>
+                                    <input name="net_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text">
                                 </div>
                             </div>
                             <div class="md:flex md:items-center mb-6">
                                 <div class="md:w-1/3">
                                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
-                                        Vendor
+                                        Tambah Device
                                     </label>
                                 </div>
                                 <div class="md:w-2/3">
-                                    <input name="vendor" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text">
+                                    <input name="add_device" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text">
                                 </div>
                             </div>
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-6" type="submit">
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                                 Save
-                            </button><br>
+                            </button>
                         </form>
-                        <h1 class="mx-auto font-bold font-mono text-lg mb-6">Anda mempunyai jatah maksimum perangkat sebanyak</h1>
-                    </center>
+                    
                     
                     <div class="container flex justify-center mx-auto">
                         <div class="flex flex-col">

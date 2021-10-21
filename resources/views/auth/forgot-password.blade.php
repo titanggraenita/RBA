@@ -1,6 +1,9 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
+            <a href="/">
+                <img src="{{asset('img/Logo_PENS.png')}}" class="object-scale-down mx-auto w-24 h-24">
+            </a>
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">

@@ -28,4 +28,8 @@ Route::get('/dashboard', function () {
 Route::post("/device/store", [Device::class, 'store']);
 Route::get("/dashboard/pending", [Device::class, 'afterRegist']);
 
+Route::get('/admin', function () {
+    return view('admin');
+});
+
 require __DIR__.'/auth.php';
