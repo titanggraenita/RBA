@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-0 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h1 class="mx-auto font-bold font-mono text-lg mb-2">REQUEST NEW DEVICE</h1>
@@ -36,8 +36,8 @@
                                 Save
                             </button>
                         </form>
-                    
-                    
+
+
                     <div class="flex justify-center mx-auto pt-6 w-max">
                         <div class="flex flex-col ">
                             <div class="w-full">
