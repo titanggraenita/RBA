@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-0 sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h1 class="mx-auto font-bold font-mono text-lg mb-2">REQUEST NEW DEVICE</h1>
@@ -38,8 +38,8 @@
                         </form>
                     
                     
-                    <div class="flex justify-center mx-auto pt-3 w-max">
-                        <div class="flex flex-col">
+                    <div class="flex justify-center mx-auto pt-6 w-max">
+                        <div class="flex flex-col ">
                             <div class="w-full">
                                 <div class="border-b border-gray-200 shadow">
                                     <table>
@@ -55,26 +55,40 @@
                                                     Status
                                                 </th>
                                                 <th class="px-6 py-2 text-xs text-gray-500">
-                                                    Deskripsi
-                                                </th>
-                                                <th class="px-6 py-2 text-xs text-gray-500">
-                                                    Merk
+                                                    IP Address
                                                 </th>
                                                 <th class="px-6 py-2 text-xs text-gray-500">
                                                     MAc Address
                                                 </th>
                                                 <th class="px-6 py-2 text-xs text-gray-500">
+                                                    Jenis Perangkat
+                                                </th>
+                                                <th class="px-6 py-2 text-xs text-gray-500">
+                                                    Merk
+                                                </th>
+                                                <th class="px-6 py-2 text-xs text-gray-500">
                                                     Tanggal Registrasi
                                                 </th>
                                                 <th class="px-6 py-2 text-xs text-gray-500">
-                                                    Umur Registrasi
+                                                    Bandwith
+                                                </th>
+                                                <th class="px-6 py-2 text-xs text-gray-500">
+                                                    Limit Bandwith
+                                                </th>
+                                                <th class="px-6 py-2 text-xs text-gray-500">
+                                                    Durasi
+                                                </th>
+                                                <th class="px-6 py-2 text-xs text-gray-500">
+                                                    Options
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
                                             <tr class="whitespace-nowrap">
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    1
+                                                <td class="px-6 py-4">
+                                                    <div class="text-sm text-gray-900">
+                                                        1
+                                                    </div>
                                                 </td>
                                                 <td class="px-6 py-4">
                                                     <div class="text-sm text-gray-900">
@@ -82,22 +96,56 @@
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4">
-                                                    <div class="text-sm text-gray-500">jhondoe@example.com</div>
+                                                    <div class="text-sm text-gray-500">
+                                                        jhondoe@example.com
+                                                    </div>
                                                 </td>
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
+                                                <td class="px-6 py-4">
+                                                    <div class="text-sm text-gray-900">
+                                                        127.0.0.1
+                                                    </div>
                                                 </td>
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
+                                                <td class="px-6 py-4">
+                                                    <div class="text-sm text-gray-900">
+                                                        Laptop
+                                                    </div>
                                                 </td>
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
+                                                <td class="px-6 py-4">
+                                                    <div class="text-sm text-gray-900">
+                                                        Dell
+                                                    </div>
                                                 </td>
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
+                                                <td class="px-6 py-4">
+                                                    <div class="text-sm text-gray-900">
+                                                        2021-1-12
+                                                    </div>
                                                 </td>
-                                                <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
+                                                <td class="px-6 py-4">
+                                                    <div class="text-sm text-gray-900">
+                                                        1000
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <div class="text-sm text-gray-900">
+                                                        5000
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <div class="text-sm text-gray-900">
+                                                        2021-1-12
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <div class="text-sm text-gray-900">
+                                                        00:10:5e:a1:b2:f6
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <div class="text-sm text-gray-900">
+                                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                                            Save
+                                                        </button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -105,7 +153,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div></p>
+                    </div></center>
                 </div>
             </div>
         </div>
