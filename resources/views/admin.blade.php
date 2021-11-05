@@ -45,110 +45,110 @@
                                     <table>
                                         <thead class="bg-gray-50">
                                             <tr>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     Nomor
                                                 </th>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     Username
                                                 </th>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     Status
                                                 </th>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     IP Address
                                                 </th>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     MAc Address
                                                 </th>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     Jenis Perangkat
                                                 </th>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     Merk
                                                 </th>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     Tanggal Registrasi
                                                 </th>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     Bandwith
                                                 </th>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     Limit Bandwith
                                                 </th>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     Durasi
                                                 </th>
-                                                <th class="px-4 py-2 text-xs text-gray-500">
+                                                <th class="px-3 py-2 text-xs text-gray-500">
                                                     Options
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
                                             <tr class="whitespace-nowrap">
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
                                                         1
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
                                                     jhondoe@example.com
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-500">
                                                         Sudah
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
                                                         127.0.0.1
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
                                                     00:15:5d:a0:d6:01
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
                                                         Laptop
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
                                                         Dell
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
                                                         2021-1-12
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
                                                         1000
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
                                                         5000
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
                                                         1000
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-4">
+                                                <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
-                                                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit">
                                                             Save
                                                         </button>
-                                                        <button class="bg-yellow-300 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                                        <button class="bg-yellow-300 hover:bg-yellow-500 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit">
                                                             Update
                                                         </button>
-                                                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit">
                                                             Delete
                                                         </button>
                                                     </div>
