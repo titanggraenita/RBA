@@ -22,6 +22,13 @@ class Admin extends Controller
         return redirect("/admin");
     }
 
+    public function delete(Request $request) {
+        $id = $request->id;
+        $device = Device::find($id);
+        $device->delete();
+        return redirect("/admin");
+    }
+
     private function getUserDevice() {
         return DB::table('device_from_users')->where('user_id', Auth::id())->get();
     }

@@ -30,7 +30,7 @@ class Device extends Controller
         $vendor = $request->vendor;
         $mac = exec("/sbin/ip addr|/bin/grep link/ether | /bin/awk '{print $2}'");
         ModelsDevice::create([
-            'user_id' => Auth::user(),
+            'user_id' => Auth::id(),
             'merk' => $vendor,
             'mac_address' => $mac,
             'ip_Address' => $_SERVER['REMOTE_ADDR'],
