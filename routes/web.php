@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Device;
+use App\Http\Controllers\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,18 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $MAC = exec("/sbin/ip addr|/bin/grep link/ether | /bin/awk '{print $2}'");
-    return view('dashboard', [
-        "MAC" => $MAC
-    ]);
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [Device::class, 'index'])->name('dashboard');
 
 Route::post("/device/store", [Device::class, 'store']);
 Route::get("/dashboard/pending", [Device::class, 'afterRegist']);
 
-Route::get('/admin', function () {
-    return view('admin');
-});
-
+Route::get('/admin', [Admin::class, 'index']);
+Route::post('/admin/approve', [Admin::class, 'approve']);
 require __DIR__.'/auth.php';

@@ -56,9 +56,9 @@
                                 Save
                             </button><br>
                         </form>
-                        <h1 class="mx-auto font-bold font-mono text-lg mb-6">Anda mempunyai jatah maksimum perangkat sebanyak</h1>
+                        <h1 class="mx-auto font-bold font-mono text-lg mb-6">Anda mempunyai jatah maksimum perangkat sebanyak 2</h1>
                     </center>
-                    
+
                     <div class="container flex justify-center mx-auto">
                         <div class="flex flex-col">
                             <div class="w-full">
@@ -93,35 +93,37 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
+                                        @foreach($user_devices as $user_device)
                                             <tr class="whitespace-nowrap">
                                                 <td class="px-6 py-4 text-sm text-gray-500">
                                                     1
                                                 </td>
                                                 <td class="px-6 py-4">
                                                     <div class="text-sm text-gray-900">
-                                                        Jon doe
+                                                        <p>{{auth()->user()['name']}}</p>
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4">
-                                                    <div class="text-sm text-gray-500">jhondoe@example.com</div>
+                                                    <div class="text-sm text-gray-500">{{$user_device->status}}</div>
                                                 </td>
                                                 <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
+                                                    {{$user_device->deskripsi}}
                                                 </td>
                                                 <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
+                                                    {{$user_device->merk}}
                                                 </td>
                                                 <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
+                                                    {{$user_device->mac_address}}
                                                 </td>
                                                 <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
+                                                    {{$user_device->tgl_register}}
                                                 </td>
                                                 <td class="px-6 py-4 text-sm text-gray-500">
                                                     2021-1-12
                                                 </td>
                                             </tr>
                                         </tbody>
+                                        @endforeach
                                     </table>
                                 </div>
                             </div>
