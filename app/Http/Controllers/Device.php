@@ -6,46 +6,39 @@ use App\Models\Device as ModelsDevice;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Device extends Controller
 {
 
-    public function getUser($id) {
-        $user = User::where('id', $id);
-        return $user;
+    public function index() {
+        $MAC = exec("/sbin/ip addr|/bin/grep link/ether | /bin/awk '{print $2}'");
+        $userDevice = $this->getUserDevice();
+        return view('dashboard', [
+            "MAC" => $MAC,
+            "user_devices" => $userDevice
+        ]);
     }
 
-    // public function afterRegist() {
-    //     $device = ModelsDevice::all();
-    //     $user_id = $device->user_id;
-    //     $username = User::where('id', $user_id);
-    //     $username = $username->username;
-    //     return view('registDashboard', [
-    //         'username' => $username,
-    //         'status' => 'Pending',
-    //         'deskripsi' => $device->device,
-    //         'merk' => $device->merk,
-    //         'mac' => $device->mac_address,
-    //         'umur_registrasi' => $device->umur_registrasi,
-    //         'tgl_registrasi' => $device->tgl_register
-    //     ]);
-    // }
+    public function getUserDevice() {
+        return DB::table('device_from_users')->where('user_id', Auth::id())->get();
+    }
+
 
     public function store(Request $request) {
-        $user = $request->username;
         $device = $request->device;
         $vendor = $request->vendor;
         $mac = exec("/sbin/ip addr|/bin/grep link/ether | /bin/awk '{print $2}'");
         ModelsDevice::create([
-            'user_id' => Auth::user()->id,
+            'user_id' => Auth::user(),
             'merk' => $vendor,
             'mac_address' => $mac,
             'ip_Address' => $_SERVER['REMOTE_ADDR'],
-            'Deskripsi' => "Menunggu Persetujuan",
+            'status' => "Menunggu Persetujuan",
             'umur_registrasi' => "0",
             'deskripsi' => $device,
             'tgl_register' => date('Y-m-d H:i:s')
         ]);
-        return redirect("/dashboard/pending");
+        return redirect("/dashboard");
     }
 }

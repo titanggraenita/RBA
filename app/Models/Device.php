@@ -12,6 +12,6 @@ class Device extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'user_id', 'merk', 'deskripsi', 'mac_address', 'ip_Address', 'tgl_register', 'umur_registrasi'
+        'user_id', 'merk', 'deskripsi', 'mac_address', 'ip_Address', 'tgl_register', 'umur_registrasi', 'status'
     ];
 }
