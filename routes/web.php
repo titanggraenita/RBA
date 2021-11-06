@@ -26,4 +26,5 @@ Route::get("/dashboard/pending", [Device::class, 'afterRegist']);
 
 Route::get('/admin', [Admin::class, 'index']);
 Route::post('/admin/approve', [Admin::class, 'approve']);
+Route::post('/admin/delete', [Admin::class, 'delete']);
 require __DIR__.'/auth.php';

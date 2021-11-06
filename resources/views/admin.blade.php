@@ -156,7 +156,8 @@
                                                             Update
                                                         </button>
                                                         </form>
-                                                        <form class="py-1">
+                                                        <form class="py-1" method="POST" action="/admin/delete">
+                                                            @csrf
                                                             <input name="id" value="{{$device->id}}" hidden>
                                                             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit">
                                                                 Delete
