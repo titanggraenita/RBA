@@ -28,10 +28,6 @@ class Admin extends Controller
         $device->delete();
         return redirect("/admin");
     }
-
-    public function update(Request $request){
-        return view('update');
-    }
     
     private function getUserDevice() {
         return DB::table('device_from_users')->where('user_id', Auth::id())->get();
