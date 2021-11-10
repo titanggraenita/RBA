@@ -22,10 +22,11 @@
             <!-- Select Role -->
             <div class="mt-4">
                 <x-label for="id_role" :value="__('Role')" />
-                <select name="device" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password">
-                    <option>Select Your Role</option>
-                    <option value="Admin">Admin</option>
-                    <option value="User">User</option>
+                <select name="role" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password">
+                    <optgroup>Role</optgroup>
+                    @foreach($roles as $role)
+                    <option value="<?=$role->id?>">{{$role->multiuser}}</option>
+                    @endforeach
                 </select>
             </div>
 
