@@ -30,7 +30,7 @@ class Admin extends Controller
     }
 
     public function update(Request $request){
-        $id = $request->id;
+        return view('update');
     }
     
     private function getUserDevice() {
