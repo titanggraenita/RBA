@@ -141,6 +141,7 @@
                                                         1000
                                                     </div>
                                                 </td>
+                                                <center>
                                                 <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
                                                         <form class="py-1" method="POST" action="/admin/approve" >
@@ -166,6 +167,7 @@
                                                         </form>
                                                     </div>
                                                 </td>
+                                                </center>
                                             </tr>
                                         @endforeach
                                         </tbody>

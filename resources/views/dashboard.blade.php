@@ -93,7 +93,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
-                                        @foreach($user_devices as $user_device)
+                                            @foreach($user_devices as $user_device)
                                             <tr class="whitespace-nowrap">
                                                 <td class="px-6 py-4 text-sm text-gray-500">
                                                     1
@@ -128,7 +128,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div></p>
+                    </div>
+                    </p>
                 </div>
             </div>
         </div>
