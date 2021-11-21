@@ -28,7 +28,7 @@ class Device extends Controller
     public function store(Request $request) {
         $device = $request->device;
         $vendor = $request->vendor;
-        $mac = exec("/sbin/ip addr|/bin/grep link/ether | /bin/awk '{print $2}'");
+        $mac = exec("cat /sys/class/net/eth0/address");
         ModelsDevice::create([
             'user_id' => Auth::id(),
             'merk' => $vendor,
