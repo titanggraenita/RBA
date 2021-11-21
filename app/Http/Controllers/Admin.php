@@ -34,6 +34,6 @@ class Admin extends Controller
     }
     
     private function getUserDevice() {
-        return DB::table('device_from_users')->where('user_id', Auth::id())->get();
+        return Device::all();
     }
 }
