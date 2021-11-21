@@ -12,7 +12,7 @@ class Device extends Controller
 {
 
     public function index() {
-        $MAC = exec("/sbin/ip addr|/bin/grep link/ether | /bin/awk '{print $2}'");
+        $MAC = exec("cat /sys/class/net/eth0/address");
         $userDevice = $this->getUserDevice();
         return view('dashboard', [
             "MAC" => $MAC,
