@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 
 class Device extends Controller
 {
@@ -24,7 +25,6 @@ class Device extends Controller
         return DB::table('device_from_users')->where('user_id', Auth::id())->get();
     }
 
-
     public function store(Request $request) {
         $device = $request->device;
         $vendor = $request->vendor;
@@ -40,5 +40,13 @@ class Device extends Controller
             'tgl_register' => date('Y-m-d H:i:s')
         ]);
         return redirect("/dashboard");
+    }
+
+    public function guzzle(){
+        $client = new Client();
+        $res = $client->request('GET', 'http://10.252.209.202/rssi_service.php');
+        echo $res->getStatusCode();
+        echo $res->getHeader('content-type')[0];
+        echo $res->getBody();
     }
 }

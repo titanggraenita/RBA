@@ -28,4 +28,6 @@ Route::get('/admin', [Admin::class, 'index']);
 Route::post('/admin/approve', [Admin::class, 'approve']);
 Route::post('/admin/delete', [Admin::class, 'delete']);
 Route::post('/admin/update', [Admin::class, 'update']);
+
+Route::get('/rssi', [Device::class, 'guzzle']);
 require __DIR__.'/auth.php';
