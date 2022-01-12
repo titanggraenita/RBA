@@ -93,7 +93,7 @@
                                                 </td>
                                                 <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
-                                                        {{auth()->user()['name']}}
+                                                        {{$device->name}}
                                                     </div>
                                                 </td>
                                                 <td class="px-3 py-4">

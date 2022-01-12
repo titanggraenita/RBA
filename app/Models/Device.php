@@ -14,4 +14,8 @@ class Device extends Model
     protected $fillable = [
         'user_id', 'merk', 'deskripsi', 'mac_address', 'ip_Address', 'tgl_register', 'umur_registrasi', 'status'
     ];
+
+    public function user() {
+        return $this->hasMany(User::class);
+    }
 }

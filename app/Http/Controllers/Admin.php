@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Device;
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class Admin extends Controller
 {
     public function index() {
         $device = $this->getUserDevice();
+        // dd($device);
         return view('admin', [
             'devices' => $device
         ]);
@@ -30,6 +33,6 @@ class Admin extends Controller
     }
     
     private function getUserDevice() {
-        return DB::table('device_from_users')->where('user_id', Auth::id())->get();
+        return DB::select('SELECT * FROM users INNER JOIN device_from_users ON users.id=device_from_users.user_id; ');
     }
 }
