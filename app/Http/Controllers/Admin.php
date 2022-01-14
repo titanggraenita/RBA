@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Device;
 
@@ -11,13 +10,9 @@ class Admin extends Controller
 {
     public function index() {
         $device = $this->getUserDevice();
-        if(Auth::user()->id_role == '1'){
-            return view('admin', [
-                'devices' => $device
-            ]);
-        } else {
-            return redirect('/dashboard');
-        }
+        return view('admin', [
+            'devices' => $device
+        ]);
     }
 
     public function approve(Request $request) {
@@ -34,6 +29,6 @@ class Admin extends Controller
     }
     
     private function getUserDevice() {
-        return Device::all();
+        return DB::select('SELECT * FROM users INNER JOIN device_from_users ON users.id=device_from_users.user_id; ');
     }
 }
