@@ -47,6 +47,6 @@ class Device extends Controller
         $res = $client->request('GET', 'http://10.252.209.202/rssi_service.php');
         echo $res->getStatusCode();
         echo $res->getHeader('content-type')[0];
-        dd($res->getBody());
+        echo $res->getBody();
     }
 }
