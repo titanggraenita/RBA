@@ -84,11 +84,12 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
-                                        @foreach($devices as $device)
+                                            <?php $i = 1; ?>
+                                            @foreach($devices as $device)
                                             <tr class="whitespace-nowrap">
                                                 <td class="px-3 py-4">
                                                     <div class="text-sm text-gray-900">
-                                                        1
+                                                        <?= $i ?>
                                                     </div>
                                                 </td>
                                                 <td class="px-3 py-4">
@@ -142,27 +143,28 @@
                                                     </div>
                                                 </td>
                                                 <center>
-                                                <td class="px-3 py-4">
-                                                    <div class="text-sm text-gray-900">
-                                                        <form class="py-1" method="POST" action="/admin/approve" >
-                                                            @csrf
-                                                            <input name="id" value="{{$device->id}}" hidden>
-                                                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit">
-                                                            Approve
-                                                        </button>
-                                                        </form>
-                                                        <form class="py-1" method="POST" action="/admin/delete">
-                                                            @csrf
-                                                            <input name="id" value="{{$device->id}}" hidden>
-                                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit">
-                                                            Delete
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </td>
+                                                    <td class="px-3 py-4">
+                                                        <div class="text-sm text-gray-900">
+                                                            <form class="py-1" method="POST" action="/admin/approve">
+                                                                @csrf
+                                                                <input name="id" value="{{$device->id}}" hidden>
+                                                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                                                    Approve
+                                                                </button>
+                                                            </form>
+                                                            <form class="py-1" method="POST" action="/admin/delete">
+                                                                @csrf
+                                                                <input name="id" value="{{$device->id}}" hidden>
+                                                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                                                    Delete
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
                                                 </center>
                                             </tr>
-                                        @endforeach
+                                            <?php $i++; ?>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

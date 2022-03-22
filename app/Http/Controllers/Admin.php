@@ -29,6 +29,7 @@ class Admin extends Controller
     }
     
     private function getUserDevice() {
-        return DB::select('SELECT * FROM users INNER JOIN device_from_users ON users.id=device_from_users.user_id; ');
+        return DB::select('SELECT * FROM users INNER JOIN device_from_users ON users.id=device_from_users.user_id;');
     }
 }
+

@@ -15,7 +15,9 @@ class Device extends Controller
     public function index() {
         $MAC = exec("cat /sys/class/net/eth0/address");
         $userDevice = $this->getUserDevice();
+        $deviceCount = count($userDevice);
         return view('dashboard', [
+            'deviceCount' => $deviceCount,
             "MAC" => $MAC,
             "user_devices" => $userDevice
         ]);
