@@ -13,7 +13,7 @@ class Device extends Controller
 {
 
     public function index() {
-        $MAC = exec("cat /sys/class/net/eth0/address");
+        $MAC = exec("cat /sys/class/net/wlp3s0/address");
         $userDevice = $this->getUserDevice();
         $deviceCount = count($userDevice);
         return view('dashboard', [
@@ -30,7 +30,7 @@ class Device extends Controller
     public function store(Request $request) {
         $device = $request->device;
         $vendor = $request->vendor;
-        $mac = exec("cat /sys/class/net/eth0/address");
+        $mac = exec("cat /sys/class/net/wlp3s0/address");
         ModelsDevice::create([
             'user_id' => Auth::id(),
             'merk' => $vendor,
