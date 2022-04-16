@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Http\Controllers\Device;
 use Closure;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,22 +21,17 @@ class RiskEngine
      */
     public function handle(Request $request, Closure $next)
     {
-        // if ($userDevice["REQUEST_METHOD"] == "POST"){
-        //     $name = device()
-        // }
-        // request->... cek isinya apa aja ~ done
-        // existing data <- database ~ kurang rssi
-        // riskFactor = riskEngine(request, existingData)
-        // if riskEngine <= lowRisk return dashboardPage
-        // else if riskEngine >= highRisk return loginPage
-        // else return otpPage
         $ipAddress = $_SERVER['REMOTE_ADDR'];
-        $macAddress = exec("cat /sys/class/net/wlp3s0/address");
+        $macAddress = exec("cat /sys/class/net/eth0/address");
         $ipAddressDB = $this->getIpAddress($request);
         $macAddressDB = $this->getMacAddress($request);
         $rssi = "";
         $rssiFromDb = array("");
+        $datetimeTolerance = $request();
         Log::alert("Email : ".$request->email);
+        Log::alert(date("Y-m-d H:i:s"));
+        //Log::alert($request->header());
+        //Log::alert(("LoginTime : ".$request->loginTime));
         if (count($macAddressDB) < 1 || count($ipAddressDB) < 1 || count($rssiFromDb) < 1) {
             Log::alert("No Device yet");
             return $next($request);
@@ -44,6 +40,21 @@ class RiskEngine
         Log::alert("Risk Engine : ".$riskEngine);
         return $next($request);
     }
+
+    public function loginTimeTolerance()
+    {
+        $hour = (int)date('H');
+        if($hour <= 8 || $hour >= 17){
+            $datetimeTolerance = $this->loginTimeTolerance($request);
+            return $next($request);
+        } else {
+            return redirect("/dashboard");
+        }
+    }
+
+    /*
+    2. Buatlah sebuah fungsi untuk menghitung toleransi waktu login
+    */
 
     private function riskEngine($ipAddress, $macAddress, $rssi, $ipAddressDB, $macAddressDB, $rssiFromDb): int {
         $riskValue = 0;
@@ -70,6 +81,8 @@ class RiskEngine
         }
         return $riskValue;
     }
+
+
 
     public function getIpAddress($request): array
     {
