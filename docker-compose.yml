@@ -10,4 +10,7 @@ services:
     expose:
       - 3306
     environment:
-      MYSQL_ROOT_PASSWORD: notSecureChangeMe
+        MYSQL_DATABASE: rba_db
+        MYSQL_USER: ekky
+        MYSQL_PASSWORD: password
+        MYSQL_ROOT_PASSWORD: notSecureChangeMe

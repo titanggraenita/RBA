@@ -13,7 +13,7 @@ class Device extends Controller
 {
 
     public function index() {
-        $MAC = exec("cat /sys/class/net/eth0/address");
+        $MAC = $this->getMacAddress();
         $userDevice = $this->getUserDevice();
         //$loginTime = $this->getLoginTime();
         $deviceCount = count($userDevice);
@@ -31,7 +31,8 @@ class Device extends Controller
     public function store(Request $request) {
         $device = $request->device;
         $vendor = $request->vendor;
-        $mac = exec("cat /sys/class/net/eth0/address");
+        $osType = $request->deviceOS;
+        $mac = $this->getMacAddress();
         ModelsDevice::create([
             'user_id' => Auth::id(),
             'merk' => $vendor,
@@ -39,10 +40,15 @@ class Device extends Controller
             'ip_Address' => $_SERVER['REMOTE_ADDR'],
             'status' => "Menunggu Persetujuan",
             'umur_registrasi' => "0",
+            'os_type' => $osType,
             'deskripsi' => $device,
             'tgl_register' => date('Y-m-d H:i:s')
         ]);
         return redirect("/dashboard");
+    }
+
+    function getMacAddress(): string {
+        return exec("cat /sys/class/net/wlp3s0/address");
     }
 
     public function guzzle(){

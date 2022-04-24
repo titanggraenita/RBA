@@ -22,6 +22,7 @@ class CreateDeviceFromUsers extends Migration
             $table->string('ip_Address');
             $table->datetime('tgl_register');
             $table->string("status")->nullable();
+            $table->string("os_type");
             $table->string('umur_registrasi')->nullable();
         });
     }
