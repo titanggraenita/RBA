@@ -27,11 +27,12 @@ class RiskEngine
         $macAddressDB = $this->getMacAddress($request);
         $rssi = "";
         $rssiFromDb = array("");
-        $datetimeTolerance = $request();
+//        $datetimeTolerance = $request();
         Log::alert("Email : ".$request->email);
         Log::alert(date("Y-m-d H:i:s"));
         //Log::alert($request->header());
         //Log::alert(("LoginTime : ".$request->loginTime));
+        dd($_SERVER['HTTP_USER_AGENT']);
         if (count($macAddressDB) < 1 || count($ipAddressDB) < 1 || count($rssiFromDb) < 1) {
             Log::alert("No Device yet");
             return $next($request);
@@ -41,16 +42,16 @@ class RiskEngine
         return $next($request);
     }
 
-    public function loginTimeTolerance()
-    {
-        $hour = (int)date('H');
-        if($hour <= 8 || $hour >= 17){
-            $datetimeTolerance = $this->loginTimeTolerance($request);
-            return $next($request);
-        } else {
-            return redirect("/dashboard");
-        }
-    }
+//    public function loginTimeTolerance()
+//    {
+//        $hour = (int)date('H');
+//        if($hour <= 8 || $hour >= 17){
+//            $datetimeTolerance = $this->loginTimeTolerance($request);
+//            return $next($request);
+//        } else {
+//            return redirect("/dashboard");
+//        }
+//    }
 
     /*
     2. Buatlah sebuah fungsi untuk menghitung toleransi waktu login
