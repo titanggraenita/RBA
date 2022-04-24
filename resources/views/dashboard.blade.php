@@ -16,7 +16,7 @@
                         <p>Welcome {{Auth::user()->email}}</p>
                         <p>Please Register Your Device and Let's BYOD</p>
                         <p>Your IP Address: {{$_SERVER['REMOTE_ADDR']}}</p>
-                        <h1 class="mx-auto font-bold font-mono text-lg mb-6">Anda mempunyai sisa kuota perangkat sebanyak <?php 
+                        <h1 class="mx-auto font-bold font-mono text-lg mb-6">Anda mempunyai sisa kuota perangkat sebanyak <?php
                         $maxDevice = 3;
                         echo $maxDevice - $deviceCount;
                         if (($maxDevice - $deviceCount) < 1) {
@@ -47,6 +47,22 @@
                                         <option value="Smartphone">Smartphone / Tablet</option>
                                         <option value="Laptop">Notebook / Laptop</option>
                                         <option value="Desktop">Desktop PC</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="md:flex md:items-center mb-2">
+                                <div class="md:w-1/3">
+                                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-password">
+                                        OS Type
+                                    </label>
+                                </div>
+                                <div class="md:w-2/3">
+                                    <select name="deviceOS" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password">
+                                        <option>Choose Your Device OS</option>
+                                        <option value="Windows">Windows</option>
+                                        <option value="Linux">Linux</option>
+                                        <option value="Mac OS">Mac OS</option>
+                                        <option value="Mobile Device">Mobile Device</option>
                                     </select>
                                 </div>
                             </div>
@@ -126,7 +142,7 @@
                                                     {{$user_device->tgl_register}}
                                                 </td>
                                                 <td class="px-6 py-4 text-sm text-gray-500">
-                                                    <?php /*$date = date('yyyy-mm-dd'); 
+                                                    <?php /*$date = date('yyyy-mm-dd');
                                                         echo $date;
                                                         $diff_date = $date - $user_device->tgl_register;
                                                         echo $diff_date. " days";*/
