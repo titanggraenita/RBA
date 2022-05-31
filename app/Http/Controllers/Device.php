@@ -48,7 +48,7 @@ class Device extends Controller
     }
 
     function getMacAddress(): string {
-        return exec("cat /sys/class/net/wlp3s0/address");
+        return exec("cat /sys/class/net/eth0/address");
     }
 
     public function guzzle(){

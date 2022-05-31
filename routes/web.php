@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Device;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\OtpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,11 @@ Route::get('/admin', [Admin::class, 'index']);
 Route::post('/admin/approve', [Admin::class, 'approve']);
 Route::post('/admin/delete', [Admin::class, 'delete']);
 Route::post('/admin/update', [Admin::class, 'update']);
+
+Route::get("/dashboard/otp", [OtpController::class, 'requestForOtp']);
+Route::post("/dashboard/otp", [OtpController::class, 'handleOtpRequest'])->name("handle-otp");
+
+Route::post("dashboard/otp/verifyOtp", [OtpController::class, 'verifyOtp'])->name("verify-otp");
 
 Route::get('/rssi', [Device::class, 'guzzle']);
 require __DIR__.'/auth.php';

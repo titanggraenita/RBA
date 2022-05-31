@@ -3,12 +3,14 @@
 namespace App\Http\Middleware;
 
 use App\Http\Controllers\Device;
+use App\Http\Controllers\OtpController;
 use Closure;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use PHPUnit\Framework\MockObject\Rule\Parameters;
 
 class RiskEngine
 {
@@ -21,8 +23,9 @@ class RiskEngine
      */
     public function handle(Request $request, Closure $next)
     {
+        $email = $request->request->get('email');
         $ipAddress = $_SERVER['REMOTE_ADDR'];
-        $macAddress = exec("cat /sys/class/net/wlp3s0/address");
+        $macAddress = exec("cat /sys/class/net/eth0/address");
         $osType = $this->detectClientOS();
         $ipAddressDB = $this->getIpAddress($request);
         $macAddressDB = $this->getMacAddress($request);
@@ -36,14 +39,17 @@ class RiskEngine
         $riskEngine = $this->riskEngine(
             $ipAddress, $macAddress, $rssi, $osType, $ipAddressDB, $macAddressDB, $rssiFromDb, $osTypeDB
         );
+        Log::alert("Risk engine : " . $riskEngine);
         if ($riskEngine < 25) {
-            redirect("/login");
+            return redirect()->route("login");
         } else if ($riskEngine < 68) {
-            // otp
+           //return redirect()->route("login");
+           return redirect("dashboard/otp")->withInput();
         } else {
             return $next($request);
         }
     }
+    //bikin halaman OTP
 
     public function isLoginAbnormal():bool
     {
