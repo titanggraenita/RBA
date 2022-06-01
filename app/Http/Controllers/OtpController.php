@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Otp as ModelsOtp;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Ichtrojan\Otp\Otp;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\ValidationException;
 
 class OtpController extends Controller
 {
@@ -13,6 +18,10 @@ class OtpController extends Controller
     public function requestForOtp(Request $request)
     {
         $request = $request->old();
+        $email = $request["email"];
+        $password = $request["password"];
+        Cookie::queue("email", $email, 10);
+        Cookie::queue("password", $password, 10);
         return view('otp', [
             'email' => $request['email']
         ]);
@@ -50,14 +59,31 @@ class OtpController extends Controller
         return view("verifyOtp");
     }
 
-    public function verifyOtp(Request $request)
+    public function verifyOtpRequest(Request $request)
     {
         $otp = $request->otp;
         $otpDb = ModelsOtp::where("otp", $otp)->first();
         if ($otpDb != null) {
             $otpDb->delete();
-            return view("dashboard");
+            $email = Cookie::get("email");
+            $password = Cookie::get("password");
+            $this->authenticate($email, $password);
+            $request->session()->regenerate();
+            
+            return redirect()->intended(RouteServiceProvider::HOME);
         }
         return view("auth.login");
+    }
+
+    private function authenticate($email, $password) {
+        $params = [
+            "email" => $email,
+            "password" => $password
+        ];
+        if (! Auth::attempt($params)) {
+            throw ValidationException::withMessages([
+                "email" => __("auth.failed")
+            ]);
+        }
     }
 }
