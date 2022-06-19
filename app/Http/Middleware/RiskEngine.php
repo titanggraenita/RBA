@@ -110,13 +110,24 @@ class RiskEngine
     private function detectClientOS(): string {
         $userAgent = $_SERVER["HTTP_USER_AGENT"];
         $userAgent = strtolower($userAgent);
+        Log::alert("User agent: " . $userAgent);
         switch ($userAgent) {
-            case str_contains($userAgent, "windows"): return "Windows";
+            case str_contains($userAgent, "windows nt 10.0"): return "Windows 10";
+            case str_contains($userAgent, "windows nt 6.3"): return "Windows 8.1";
+            case str_contains($userAgent, "windows nt 6.2"): return "Windows 8";
+            case str_contains($userAgent, "windows nt 6.1"): return "Windows 7";
+            case str_contains($userAgent, "windows nt 6.0"): return "Windows Vista";
+            case str_contains($userAgent, "windows nt 5.1"): return "Windows XP";
+            case str_contains($userAgent, "windows nt 5.0"): return "Windows 2000";
             case str_contains($userAgent, "linux"): return "Linux";
-            case str_contains($userAgent, "darwin"): return "Mac OS";
+            case str_contains($userAgent, "x11"): return "UNIX";
+            case str_contains($userAgent, "mac"): return "Mac/iOS";
             default: return "Mobile Device";
         }
+        
     }
+
+    
 
     public function getIpAddress($request): array
     {

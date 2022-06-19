@@ -42,7 +42,7 @@ class OtpController extends Controller
     {
         $email = $request->email;
         $generatedOtp = $this->generateOtp();
-        $response = Http::post('http://35.247.138.126:8080/email', [
+        $response = Http::post('http://35.232.8.249:8080/email', [
             "senderName" => "RBA Admin",
             "senderMail" => "ekharisma@outlook.com",
             "subject" => "RBA OTP",
