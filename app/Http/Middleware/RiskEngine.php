@@ -42,14 +42,14 @@ class RiskEngine
         Log::alert("Risk engine : " . $riskEngine);
         if ($riskEngine < 25) {
             return redirect()->route("login");
-        } else if ($riskEngine < 68) {
+        } else if ($riskEngine < 75) {
            //return redirect()->route("login");
            return redirect("dashboard/otp")->withInput();
         } else {
             return $next($request);
         }
     }
-    //bikin halaman OTP
+
 
     public function isLoginAbnormal():bool
     {
@@ -61,10 +61,6 @@ class RiskEngine
             return false;
         }
     }
-
-    /*
-    2. Buatlah sebuah fungsi untuk menghitung toleransi waktu login
-    */
 
     private function riskEngine(
         $ipAddress, $macAddress, $rssi, $osType,
