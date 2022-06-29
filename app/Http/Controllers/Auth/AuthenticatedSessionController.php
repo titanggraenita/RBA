@@ -17,8 +17,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
 	//dd(readfile("/var/log/apache2/access.log.1"));    
 	return view('auth.login');
+=======
+        //dd(readfile("/var/log/apache2/access.log.1"));
+        return view('auth.login');
+>>>>>>> 4942fc9c699d97e860a19e9d549e633ff425e392
     }
 
     /**

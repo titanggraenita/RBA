@@ -15,6 +15,13 @@ class Admin extends Controller
         ]);
     }
 
+    /*public function loginTime(){
+        $loginTime = $this->getLoginTime();
+        return view('admin', [
+            'loginTime' => $loginTime
+        ]);
+    }*/
+
     public function approve(Request $request) {
         $id = $request->id;
         DB::update("UPDATE device_from_users SET status = ? WHERE id = ?", ['Disetujui', $id]);
@@ -29,6 +36,7 @@ class Admin extends Controller
     }
     
     private function getUserDevice() {
-        return DB::select('SELECT * FROM users INNER JOIN device_from_users ON users.id=device_from_users.user_id; ');
+        return DB::select('SELECT * FROM users INNER JOIN device_from_users ON users.id=device_from_users.user_id;');
     }
 }
+

@@ -1,3 +1,4 @@
+<?php $i = 1; $isFull = false; ?>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -15,6 +16,13 @@
                         <p>Welcome {{Auth::user()->email}}</p>
                         <p>Please Register Your Device and Let's BYOD</p>
                         <p>Your IP Address: {{$_SERVER['REMOTE_ADDR']}}</p>
+                        <h1 class="mx-auto font-bold font-mono text-lg mb-6">Anda mempunyai sisa kuota perangkat sebanyak <?php
+                        $maxDevice = 3;
+                        echo $maxDevice - $deviceCount;
+                        if (($maxDevice - $deviceCount) < 1) {
+                            $isFull = true;
+                            echo "<script>alert('Jumlah Device Maksimal Tercapai')</script>";
+                        } ?> </h1>
                         <form class="w-full max-w-sm" method="POST" action="/device/store">
                             @csrf
                             <div class="md:flex md:items-center mb-2">
@@ -42,6 +50,22 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="md:flex md:items-center mb-2">
+                                <div class="md:w-1/3">
+                                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-password">
+                                        OS Type
+                                    </label>
+                                </div>
+                                <div class="md:w-2/3">
+                                    <select name="deviceOS" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password">
+                                        <option>Choose Your Device OS</option>
+                                        <option value="Windows">Windows</option>
+                                        <option value="Linux">Linux</option>
+                                        <option value="Mac OS">Mac OS</option>
+                                        <option value="Mobile Device">Mobile Device</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="md:flex md:items-center mb-6">
                                 <div class="md:w-1/3">
                                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
@@ -52,11 +76,10 @@
                                     <input name="vendor" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text">
                                 </div>
                             </div>
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-6" type="submit">
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-6" type="submit" <?=($isFull) ? "disabled" : ""?>>
                                 Save
                             </button><br>
                         </form>
-                        <h1 class="mx-auto font-bold font-mono text-lg mb-6">Anda mempunyai jatah maksimum perangkat sebanyak 2</h1>
                     </center>
 
                     <div class="container flex justify-center mx-auto">
@@ -96,7 +119,7 @@
                                             @foreach($user_devices as $user_device)
                                             <tr class="whitespace-nowrap">
                                                 <td class="px-6 py-4 text-sm text-gray-500">
-                                                    1
+                                                    <?= $i ?>
                                                 </td>
                                                 <td class="px-6 py-4">
                                                     <div class="text-sm text-gray-900">
@@ -119,10 +142,21 @@
                                                     {{$user_device->tgl_register}}
                                                 </td>
                                                 <td class="px-6 py-4 text-sm text-gray-500">
-                                                    2021-1-12
+                                                    <?php /*$date = date('yyyy-mm-dd');
+                                                        echo $date;
+                                                        $diff_date = $date - $user_device->tgl_register;
+                                                        echo $diff_date. " days";*/
+                                                        //$date_diff($date1, $date2);
+                                                        $date1 = date('Y-m-d H:i:s');
+                                                        $date1 = new DateTime($date1);
+                                                        $date2 = new DateTime($user_device->tgl_register);
+                                                        $interval = date_diff($date1, $date2);
+                                                        echo $interval->format("%d hari")
+                                                    ?>
                                                 </td>
                                             </tr>
                                         </tbody>
+                                        <?php $i++; ?>
                                         @endforeach
                                     </table>
                                 </div>
