@@ -24,6 +24,7 @@ class CreateDeviceFromUsers extends Migration
             $table->string("status")->nullable();
             $table->string("os_type");
             $table->string('umur_registrasi')->nullable();
+            $table->string('access_point');
         });
     }
 

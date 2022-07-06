@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device as ModelsDevice;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 
 class Device extends Controller
 {
@@ -33,6 +33,7 @@ class Device extends Controller
         $vendor = $request->vendor;
         $osType = $request->deviceOS;
         $mac = $this->getMacAddress();
+        $location = $this->getAccessPoint();
         ModelsDevice::create([
             'user_id' => Auth::id(),
             'merk' => $vendor,
@@ -42,9 +43,22 @@ class Device extends Controller
             'umur_registrasi' => "0",
             'os_type' => $osType,
             'deskripsi' => $device,
-            'tgl_register' => date('Y-m-d H:i:s')
+            'tgl_register' => date('Y-m-d H:i:s'),
+            'access_point' => $location
         ]);
         return redirect("/dashboard");
+    }
+
+    private function getAccessPoint()
+    {
+        $location = $this->guzzle();
+        $location = $location["Nearby AP Statistics"];
+        Log::alert("Location : " . $location);
+        switch($location){
+            case str_contains($location, "ARD3-"): return "Gedung D3";
+            case str_contains($location, "ARS2-"): return "Gedung Pascasarjana";
+            default: return "Gedung D4";
+        }
     }
 
     function getMacAddress(): string {
@@ -54,8 +68,6 @@ class Device extends Controller
     public function guzzle(){
         $client = new Client();
         $res = $client->request('GET', 'http://10.252.209.202/rssi_service.php');
-        echo $res->getStatusCode();
-        echo $res->getHeader('content-type')[0];
-        echo $res->getBody();
+        return $res->getBody();
     }
 }

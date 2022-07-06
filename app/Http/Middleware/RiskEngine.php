@@ -2,15 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\Device;
-use App\Http\Controllers\OtpController;
 use Closure;
-use DateTime;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use PHPUnit\Framework\MockObject\Rule\Parameters;
+use GuzzleHttp\Client;
 
 class RiskEngine
 {
@@ -27,17 +23,17 @@ class RiskEngine
         $ipAddress = $_SERVER['REMOTE_ADDR'];
         $macAddress = exec("cat /sys/class/net/eth0/address");
         $osType = $this->detectClientOS();
+        $rssi = $this->detectAccessPoint();
         $ipAddressDB = $this->getIpAddress($request);
         $macAddressDB = $this->getMacAddress($request);
         $osTypeDB = $this->getOsType($request);
-        $rssi = "";
-        $rssiFromDb = array("");
-        if (count($macAddressDB) < 1 || count($ipAddressDB) < 1 || count($rssiFromDb) < 1) {
+        $rssiFromDB = $this->getLocation($request);
+        if (count($macAddressDB) < 1 || count($ipAddressDB) < 1 || count($rssiFromDB) < 1) {
             Log::alert("No Device yet");
             return $next($request);
         }
         $riskEngine = $this->riskEngine(
-            $ipAddress, $macAddress, $rssi, $osType, $ipAddressDB, $macAddressDB, $rssiFromDb, $osTypeDB
+            $ipAddress, $macAddress, $rssi, $osType, $ipAddressDB, $macAddressDB, $rssiFromDB, $osTypeDB
         );
         Log::alert("Risk engine : " . $riskEngine);
         if ($riskEngine < 25) {
@@ -64,7 +60,7 @@ class RiskEngine
 
     private function riskEngine(
         $ipAddress, $macAddress, $rssi, $osType,
-        $ipAddressDB, $macAddressDB, $rssiFromDb, $osTypeDB
+        $ipAddressDB, $macAddressDB, $rssiFromDB, $osTypeDB
     ): int {
         $riskValue = 0;
         foreach ($ipAddressDB as $ipAddressEl) {
@@ -81,9 +77,10 @@ class RiskEngine
                 $riskValue +=25;break;
             }
         }
-        foreach ($rssiFromDb as $rssiEl) {
-            Log::alert("RSSI Checking -> ". $rssiEl);
-            if ($rssiEl == $rssi) {
+        foreach ($rssiFromDB as $rssiEl) {
+            Log::alert("RSSI Checking -> ". $rssiEl->access_point);
+            Log::alert("Compare " . $rssiEl->access_point . " And " . $rssi);
+            if (str_contains($rssi, $rssiEl->access_point)) {
                 Log::alert("Same RSSI !");
                 $riskValue += 25;break;
             }
@@ -106,7 +103,7 @@ class RiskEngine
     private function detectClientOS(): string {
         $userAgent = $_SERVER["HTTP_USER_AGENT"];
         $userAgent = strtolower($userAgent);
-        Log::alert("User agent: " . $userAgent);
+        Log::alert("User agent : " . $userAgent);
         switch ($userAgent) {
             case str_contains($userAgent, "windows nt 10.0"): return "Windows 10";
             case str_contains($userAgent, "windows nt 6.3"): return "Windows 8.1";
@@ -120,10 +117,25 @@ class RiskEngine
             case str_contains($userAgent, "mac"): return "Mac/iOS";
             default: return "Mobile Device";
         }
-        
     }
 
-    
+    public function guzzle(){
+        $client = new Client();
+        $res = $client->request('GET', 'http://10.252.209.202/rssi_service.php');
+        return $res->getBody();
+    }
+
+    private function detectAccessPoint()
+    {
+        $location = $this->guzzle();
+        $location = $location["Nearby AP Statistics"];
+        Log::alert("Location : " . $location);
+        switch($location){
+            case str_contains($location, "ARD3-"): return "Gedung D3";
+            case str_contains($location, "ARS2-"): return "Gedung Pascasarjana";
+            default: return "Gedung D4";
+        }
+    }
 
     public function getIpAddress($request): array
     {
@@ -135,7 +147,13 @@ class RiskEngine
         return DB::select('SELECT mac_address FROM users INNER JOIN device_from_users ON user_id=device_from_users.user_id WHERE users.email=?;', [$request->email]);
     }
 
-    public function getOsType($request): array {
+    public function getOsType($request): array 
+    {
         return DB::select('SELECT os_type FROM users INNER JOIN device_from_users ON user_id=device_from_users.user_id WHERE users.email=?;', [$request->email]);
+    }
+
+    public function getLocation($request): array 
+    {
+        return DB::select('SELECT access_point FROM users INNER JOIN device_from_users ON user_id=device_from_users.user_id WHERE users.enail=>;', [$request->email]);
     }
 }
