@@ -74,7 +74,8 @@ class RiskEngine
             Log::alert("MAC Checking -> ". $macAddressEl->mac_address);
             if ($macAddressEl->mac_address == $macAddress) {
                 Log::alert("Same MAC !");
-                $riskValue +=25;break;
+                $riskValue +=25;
+                break;
             }
         }
         foreach ($rssiFromDB as $rssiEl) {
@@ -82,7 +83,8 @@ class RiskEngine
             Log::alert("Compare " . $rssiEl->access_point . " And " . $rssi);
             if (str_contains($rssi, $rssiEl->access_point)) {
                 Log::alert("Same RSSI !");
-                $riskValue += 25;break;
+                $riskValue += 10;
+                break;
             }
         }
         foreach ($osTypeDB as $osTypeEl) {
@@ -90,11 +92,12 @@ class RiskEngine
             Log::alert("Compare " . $osTypeEl->os_type . " And " . $osType);
             if (str_contains($osType, $osTypeEl->os_type)) {
                 Log::alert("Same OS Type");
-                $riskValue +=18; break;
+                $riskValue +=25; 
+                break;
             }
         }
         if (!$this->isLoginAbnormal()) {
-            $riskValue += 7;
+            $riskValue += 15;
         }
         Log::alert("Risk Factor : " . $riskValue);
         return $riskValue;
