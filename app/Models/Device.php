@@ -12,7 +12,7 @@ class Device extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'user_id', 'merk', 'deskripsi', 'mac_address',
+        'user_id', 'merk', 'deskripsi', 'mac_address', "access_point",
         'ip_Address', 'tgl_register', 'umur_registrasi', 'status', 'os_type'
     ];
 
