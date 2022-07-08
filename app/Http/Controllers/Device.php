@@ -53,12 +53,12 @@ class Device extends Controller
     {
         $location = $this->guzzle();
         //$location = $location["Nearby AP Statistics"];    
-	Log::alert("Location : " . $location);
+	    dd($location);
         switch($location){
-            case str_contains($location, "ARD3-"): return "Gedung D3";
-            case str_contains($location, "ARS2-"): return "Gedung Pascasarjana";
-	    case str_contains($location, "ARTC-"): return "Gedung TC";
-	    default: return "Gedung D4";
+            case str_contains($location, "ARD3"): return "Gedung D3";
+            case str_contains($location, "ARS2"): return "Gedung Pascasarjana";
+	        case str_contains($location, "ARTC"): return "Gedung TC";
+	        default: return "Gedung D4";
         }
     }
 
