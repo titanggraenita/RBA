@@ -52,13 +52,7 @@ class Device extends Controller
     private function getAccessPoint()
     {
         $location = $this->guzzle();
-        //$location = $location["Nearby AP Statistics"];    
-        // switch($location){
-        //     case str_contains($location, "ARD3"): return "Gedung D3";
-        //     case str_contains($location, "ARS2"): return "Gedung Pascasarjana";
-	    //     case str_contains($location, "ARTC"): return "Gedung TC";
-	    //     default: return "Gedung D4";
-        // }
+        
         if (str_contains($location, "ARD3")) {
             return "Gedung D3";
         }

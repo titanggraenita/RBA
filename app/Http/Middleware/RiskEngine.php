@@ -125,20 +125,25 @@ class RiskEngine
     public function guzzle(){
         $client = new Client();
         $res = $client->request('GET', 'http://10.252.209.202/rssi_service.php');
-	return $res->getBody()->getContents();
+	    return $res->getBody()->getContents();
     }
 
     private function detectAccessPoint()
     {
         $location = $this->guzzle();
-	//$location = $location["Nearby AP Statistics"];
-	Log::alert("Location : " . $location);
-        switch($location){
-            case str_contains($location, "ARD3-"): return "Gedung D3";
-            case str_contains($location, "ARS2-"): return "Gedung Pascasarjana";
-	        case str_contains($location, "ARTC-"): return "Gedung TC";
-	    default: return "Gedung D4";
+        if (str_contains($location, "ARD3")) {
+            return "Gedung D3";
         }
+
+        if (str_contains($location, "ARS2")) {
+            return "Gedung Pascasarjana";
+        }
+
+        if (str_contains($location, "ARTC")) {
+            return "Gedung Training Center";
+        }
+
+        return "Gedung D4";
     }
 
     public function getIpAddress($request): array
