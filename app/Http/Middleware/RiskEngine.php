@@ -157,6 +157,6 @@ class RiskEngine
 
     public function getLocation($request): array 
     {
-        return DB::select('SELECT access_point FROM users INNER JOIN device_from_users ON user_id=device_from_users.user_id WHERE users.enail=>;', [$request->email]);
+        return DB::select('SELECT access_point FROM users INNER JOIN device_from_users ON user_id=device_from_users.user_id WHERE users.email=?;', [$request->email]);
     }
 }
