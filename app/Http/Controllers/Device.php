@@ -69,7 +69,7 @@ class Device extends Controller
         }
 
         if (str_contains($location, "ARTC")) {
-            return "Gedung Center";
+            return "Gedung Training Center";
         }
 
         return "Gedung D4";
