@@ -54,12 +54,25 @@ class Device extends Controller
         $location = $this->guzzle();
         //$location = $location["Nearby AP Statistics"];    
 	    dd(gettype($location));
-        switch($location){
-            case str_contains($location, "ARD3"): return "Gedung D3";
-            case str_contains($location, "ARS2"): return "Gedung Pascasarjana";
-	        case str_contains($location, "ARTC"): return "Gedung TC";
-	        default: return "Gedung D4";
+        // switch($location){
+        //     case str_contains($location, "ARD3"): return "Gedung D3";
+        //     case str_contains($location, "ARS2"): return "Gedung Pascasarjana";
+	    //     case str_contains($location, "ARTC"): return "Gedung TC";
+	    //     default: return "Gedung D4";
+        // }
+        if (str_contains($location, "ARD3")) {
+            return "Gedung D3";
         }
+
+        if (str_contains($location, "ARS2")) {
+            return "Gedung Pascasarjana";
+        }
+
+        if (str_contains($location, "ARTC")) {
+            return "Gedung Center";
+        }
+
+        return "Gedung D4";
     }
 
     function getMacAddress(): string {
