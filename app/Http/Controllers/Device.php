@@ -52,12 +52,13 @@ class Device extends Controller
     private function getAccessPoint()
     {
         $location = $this->guzzle();
-        $location = $location["Nearby AP Statistics"];
-        Log::alert("Location : " . $location);
+        //$location = $location["Nearby AP Statistics"];    
+	Log::alert("Location : " . $location);
         switch($location){
             case str_contains($location, "ARD3-"): return "Gedung D3";
             case str_contains($location, "ARS2-"): return "Gedung Pascasarjana";
-            default: return "Gedung D4";
+	    case str_contains($location, "ARTC-"): return "Gedung TC";
+	    default: return "Gedung D4";
         }
     }
 
@@ -68,6 +69,6 @@ class Device extends Controller
     public function guzzle(){
         $client = new Client();
         $res = $client->request('GET', 'http://10.252.209.202/rssi_service.php');
-        return $res->getBody();
+        return $res->getBody()->getContents();
     }
 }

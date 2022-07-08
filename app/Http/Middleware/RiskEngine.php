@@ -125,18 +125,19 @@ class RiskEngine
     public function guzzle(){
         $client = new Client();
         $res = $client->request('GET', 'http://10.252.209.202/rssi_service.php');
-        return $res->getBody();
+	return $res->getBody()->getContents();
     }
 
     private function detectAccessPoint()
     {
         $location = $this->guzzle();
-        $location = $location["Nearby AP Statistics"];
-        Log::alert("Location : " . $location);
+	//$location = $location["Nearby AP Statistics"];
+	Log::alert("Location : " . $location);
         switch($location){
             case str_contains($location, "ARD3-"): return "Gedung D3";
             case str_contains($location, "ARS2-"): return "Gedung Pascasarjana";
-            default: return "Gedung D4";
+	    case str_contains($location, "ARTC-"): return "Gedung TC";
+	    default: return "Gedung D4;
         }
     }
 
@@ -157,6 +158,7 @@ class RiskEngine
 
     public function getLocation($request): array 
     {
-        return DB::select('SELECT access_point FROM users INNER JOIN device_from_users ON user_id=device_from_users.user_id WHERE users.enail=>;', [$request->email]);
+        return DB::select('SELECT access_point FROM users INNER JOIN device_from_users ON user_id=device_from_users.user_id WHERE users.email=?;', [$request->email]);
     }
 }
+
