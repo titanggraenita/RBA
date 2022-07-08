@@ -34,7 +34,6 @@ class Device extends Controller
         $osType = $request->deviceOS;
         $mac = $this->getMacAddress();
         $location = $this->getAccessPoint();
-        dd($location);
         ModelsDevice::create([
             'user_id' => Auth::id(),
             'merk' => $vendor,
