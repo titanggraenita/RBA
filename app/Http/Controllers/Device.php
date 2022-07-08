@@ -53,7 +53,7 @@ class Device extends Controller
     {
         $location = $this->guzzle();
         //$location = $location["Nearby AP Statistics"];    
-	    dd($location);
+	    dd(json_encode($location));
         switch($location){
             case str_contains($location, "ARD3"): return "Gedung D3";
             case str_contains($location, "ARS2"): return "Gedung Pascasarjana";
