@@ -36,7 +36,7 @@ class RiskEngine
             $ipAddress, $macAddress, $rssi, $osType, $ipAddressDB, $macAddressDB, $rssiFromDB, $osTypeDB
         );
         Log::alert("Risk engine : " . $riskEngine);
-        if ($riskEngine < 25) {
+        if ($riskEngine <= 50) {
             return redirect()->route("login");
         } else if ($riskEngine < 75) {
            //return redirect()->route("login");
@@ -51,7 +51,7 @@ class RiskEngine
     {
         $hour = (int)date('H');
         Log::alert("Hour : " . $hour);
-        if($hour <= 7 || $hour >= 17){
+        if($hour <= 7 || $hour >= 9){
             return true;
         } else {
             return false;
