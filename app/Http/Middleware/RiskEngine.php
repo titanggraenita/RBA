@@ -26,7 +26,6 @@ class RiskEngine
         $rssi = $this->detectAccessPoint();
         $ipAddressDB = $this->getIpAddress($request);
         $macAddressDB = $this->getMacAddress($request);
-        dd($macAddressDB, $macAddress);
         $osTypeDB = $this->getOsType($request);
         $rssiFromDB = $this->getLocation($request);
         if (count($macAddressDB) < 1 || count($ipAddressDB) < 1 || count($rssiFromDB) < 1) {
