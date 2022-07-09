@@ -73,6 +73,7 @@ class RiskEngine
         }
         foreach ($macAddressDB as $macAddressEl) {
             Log::alert("MAC Checking -> ". $macAddressEl->mac_address);
+            Log::alert("Compare " . $macAddressEl->mac_address . " And " . $macAddress);
             if ($macAddressEl->mac_address == $macAddress) {
                 Log::alert("Same MAC !");
                 $riskValue +=25;
